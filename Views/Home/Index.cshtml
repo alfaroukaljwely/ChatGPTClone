@@ -1,0 +1,30 @@
+﻿@model ChatGPTClone.Models.ChatViewModel
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4">ChatGPT Clone</h2>
+
+    <div class="card p-3" style="height:70vh; overflow-y:auto;">
+        @foreach (var msg in Model.Messages)
+        {
+            if (msg.Role == "user")
+            {
+                <div class="alert alert-primary">
+                    <strong>You:</strong> @msg.Content
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-success">
+                    <strong>AI:</strong> @msg.Content
+                </div>
+            }
+        }
+    </div>
+
+    <form asp-action="Send" method="post" class="mt-3">
+        <div class="input-group">
+            <input asp-for="UserInput" class="form-control" placeholder="اكتب رسالتك..." />
+            <button class="btn btn-dark">Send</button>
+        </div>
+    </form>
+</div>
